@@ -1,5 +1,6 @@
 import { Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 import turtleImg from "@/assets/turtle-snorkel.jpg";
 import dolphinsImg from "@/assets/dolphins-sunset.jpg";
@@ -9,9 +10,9 @@ import islandImg from "@/assets/island-hopping.jpg";
 
 interface Excursion {
   id: string;
-  name: string;
-  description: string;
-  duration: string;
+  nameKey: string;
+  descKey: string;
+  durationKey: string;
   price: string;
   image: string;
 }
@@ -19,55 +20,57 @@ interface Excursion {
 const excursions: Excursion[] = [
   {
     id: "turtle-snorkel",
-    name: "Snorkeling with Turtles",
-    description: "Swim alongside sea turtles in their natural habitat at nearby reefs.",
-    duration: "2-3 hours",
+    nameKey: "excursion.turtle.name",
+    descKey: "excursion.turtle.desc",
+    durationKey: "duration.2-3hours",
     price: "$35",
     image: turtleImg,
   },
   {
     id: "dolphin-cruise",
-    name: "Dolphin Cruise at Sunset",
-    description: "Watch dolphins play as the sun sets over the Indian Ocean.",
-    duration: "1.5-2 hours",
+    nameKey: "excursion.dolphin.name",
+    descKey: "excursion.dolphin.desc",
+    durationKey: "duration.1.5-2hours",
     price: "$30",
     image: dolphinsImg,
   },
   {
     id: "sandbank-picnic",
-    name: "Sandbank Picnic",
-    description: "Private escape to a pristine sandbank surrounded by turquoise water.",
-    duration: "3-4 hours",
+    nameKey: "excursion.sandbank.name",
+    descKey: "excursion.sandbank.desc",
+    durationKey: "duration.3-4hours",
     price: "$45",
     image: sandbankImg,
   },
   {
     id: "fishing-trip",
-    name: "Fishing Trip",
-    description: "Traditional line fishing with local captains. Keep what you catch.",
-    duration: "3-4 hours",
+    nameKey: "excursion.fishing.name",
+    descKey: "excursion.fishing.desc",
+    durationKey: "duration.3-4hours",
     price: "$40",
     image: fishingImg,
   },
   {
     id: "island-hopping",
-    name: "Island Hopping",
-    description: "Visit neighboring local islands and experience authentic Maldivian life.",
-    duration: "Half day",
+    nameKey: "excursion.island.name",
+    descKey: "excursion.island.desc",
+    durationKey: "duration.halfDay",
     price: "$55",
     image: islandImg,
   },
 ];
 
 const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
-  const whatsappLink = `https://wa.me/9607654321?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(excursion.name)}%20excursion.`;
+  const { t } = useLanguage();
+  const name = t(excursion.nameKey);
+  const whatsappLink = `https://wa.me/9607654321?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(name)}%20excursion.`;
 
   return (
     <article className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={excursion.image}
-          alt={excursion.name}
+          alt={name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
@@ -75,17 +78,17 @@ const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
       
       <div className="p-6">
         <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
-          {excursion.name}
+          {name}
         </h3>
         
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-          {excursion.description}
+          {t(excursion.descKey)}
         </p>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-5">
           <span className="flex items-center gap-1.5">
             <Clock className="w-4 h-4" />
-            {excursion.duration}
+            {t(excursion.durationKey)}
           </span>
           <span className="flex items-center gap-1.5 font-medium text-foreground">
             <DollarSign className="w-4 h-4" />
@@ -99,7 +102,7 @@ const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
           asChild
         >
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            Book via WhatsApp
+            {t("excursions.book")}
           </a>
         </Button>
       </div>
@@ -108,15 +111,17 @@ const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
 };
 
 const ExcursionsSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="excursions" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            Our Excursions
+            {t("excursions.title")}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Handpicked experiences with verified local captains. All prices are fixed — no bargaining needed.
+            {t("excursions.subtitle")}
           </p>
         </div>
 

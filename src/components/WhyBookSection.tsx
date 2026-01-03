@@ -1,38 +1,41 @@
 import { Check } from "lucide-react";
-
-const reasons = [
-  {
-    title: "Fixed prices, no bargaining",
-    description: "What you see is what you pay. No surprises.",
-  },
-  {
-    title: "English & Russian support",
-    description: "Communicate easily in your language.",
-  },
-  {
-    title: "Verified local captains",
-    description: "We work only with experienced, trustworthy locals.",
-  },
-  {
-    title: "No prepayment scams",
-    description: "Pay only when you meet us on the island.",
-  },
-  {
-    title: "We stay in touch",
-    description: "Support before, during, and after your trip.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const WhyBookSection = () => {
+  const { t } = useLanguage();
+
+  const reasons = [
+    {
+      titleKey: "whyBook.reason1.title",
+      descKey: "whyBook.reason1.desc",
+    },
+    {
+      titleKey: "whyBook.reason2.title",
+      descKey: "whyBook.reason2.desc",
+    },
+    {
+      titleKey: "whyBook.reason3.title",
+      descKey: "whyBook.reason3.desc",
+    },
+    {
+      titleKey: "whyBook.reason4.title",
+      descKey: "whyBook.reason4.desc",
+    },
+    {
+      titleKey: "whyBook.reason5.title",
+      descKey: "whyBook.reason5.desc",
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-secondary/50">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            Why book with us
+            {t("whyBook.title")}
           </h2>
           <p className="text-muted-foreground">
-            We believe in transparency, safety, and genuine human connection.
+            {t("whyBook.subtitle")}
           </p>
         </div>
 
@@ -48,10 +51,10 @@ const WhyBookSection = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-foreground mb-1">
-                    {reason.title}
+                    {t(reason.titleKey)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {reason.description}
+                    {t(reason.descKey)}
                   </p>
                 </div>
               </li>
