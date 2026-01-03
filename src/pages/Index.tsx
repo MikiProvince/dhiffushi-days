@@ -1,3 +1,4 @@
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ExcursionsSection from "@/components/ExcursionsSection";
@@ -10,21 +11,21 @@ import StickyWhatsApp from "@/components/StickyWhatsApp";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSection />
-        <ExcursionsSection />
-        <WhyBookSection />
-        <section id="how-it-works">
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <HeroSection />
+          <ExcursionsSection />
+          <WhyBookSection />
           <HowItWorksSection />
-        </section>
-        <ReviewsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <StickyWhatsApp />
-    </div>
+          <ReviewsSection />
+          <ContactSection />
+        </main>
+        <Footer />
+        <StickyWhatsApp />
+      </div>
+    </LanguageProvider>
   );
 };
 

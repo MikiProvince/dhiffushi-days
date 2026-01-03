@@ -1,33 +1,36 @@
 import { Search, MessageCircle, Waves } from "lucide-react";
-
-const steps = [
-  {
-    icon: Search,
-    title: "Choose excursion",
-    description: "Browse our trips and find what excites you.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Message us on WhatsApp",
-    description: "We'll confirm availability and arrange everything.",
-  },
-  {
-    icon: Waves,
-    title: "Enjoy your day on the ocean",
-    description: "Show up, relax, and make unforgettable memories.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HowItWorksSection = () => {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      icon: Search,
+      titleKey: "howItWorks.step1.title",
+      descKey: "howItWorks.step1.desc",
+    },
+    {
+      icon: MessageCircle,
+      titleKey: "howItWorks.step2.title",
+      descKey: "howItWorks.step2.desc",
+    },
+    {
+      icon: Waves,
+      titleKey: "howItWorks.step3.title",
+      descKey: "howItWorks.step3.desc",
+    },
+  ];
+
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section id="how-it-works" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            How it works
+            {t("howItWorks.title")}
           </h2>
           <p className="text-muted-foreground">
-            Three simple steps to your perfect day.
+            {t("howItWorks.subtitle")}
           </p>
         </div>
 
@@ -44,11 +47,11 @@ const HowItWorksSection = () => {
               </div>
               
               <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
-                {step.title}
+                {t(step.titleKey)}
               </h3>
               
               <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-                {step.description}
+                {t(step.descKey)}
               </p>
             </div>
           ))}

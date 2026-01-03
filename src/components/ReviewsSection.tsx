@@ -1,33 +1,36 @@
 import { Star, Quote } from "lucide-react";
-
-const reviews = [
-  {
-    name: "Sarah & Tom",
-    location: "Germany",
-    text: "The turtle snorkeling was magical. No rush, just us and the ocean. Exactly what we needed.",
-  },
-  {
-    name: "Anastasia",
-    location: "Russia",
-    text: "Finally, someone who speaks Russian! Everything was organized perfectly. Highly recommend.",
-  },
-  {
-    name: "Marco",
-    location: "Italy",
-    text: "Simple, honest, reliable. The dolphin cruise was the highlight of our trip.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ReviewsSection = () => {
+  const { t } = useLanguage();
+
+  const reviews = [
+    {
+      textKey: "review1.text",
+      nameKey: "review1.name",
+      locationKey: "review1.location",
+    },
+    {
+      textKey: "review2.text",
+      nameKey: "review2.name",
+      locationKey: "review2.location",
+    },
+    {
+      textKey: "review3.text",
+      nameKey: "review3.name",
+      locationKey: "review3.location",
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-secondary/50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            What guests say
+            {t("reviews.title")}
           </h2>
           <p className="text-muted-foreground">
-            Recommended by guests staying on Dhiffushi
+            {t("reviews.subtitle")}
           </p>
         </div>
 
@@ -46,15 +49,15 @@ const ReviewsSection = () => {
               </div>
               
               <p className="text-foreground mb-4 text-sm leading-relaxed">
-                "{review.text}"
+                "{t(review.textKey)}"
               </p>
               
               <div className="pt-4 border-t border-border">
                 <p className="font-medium text-foreground text-sm">
-                  {review.name}
+                  {t(review.nameKey)}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {review.location}
+                  {t(review.locationKey)}
                 </p>
               </div>
             </article>
