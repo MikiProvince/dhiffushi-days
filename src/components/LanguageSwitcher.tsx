@@ -10,20 +10,19 @@ const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-1 bg-foreground/10 backdrop-blur-sm rounded-full p-1">
+    <div className="flex items-center gap-1">
       {languages.map((lang) => (
         <button
           key={lang.code}
           onClick={() => setLanguage(lang.code)}
-          className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${
+          className={`w-8 h-8 text-xl rounded-full transition-all duration-200 flex items-center justify-center ${
             language === lang.code
-              ? "bg-white text-foreground shadow-sm"
-              : "text-foreground/80 hover:text-foreground hover:bg-white/50"
+              ? "ring-2 ring-primary scale-110"
+              : "opacity-60 hover:opacity-100 hover:scale-105"
           }`}
           aria-label={`Switch to ${lang.label}`}
         >
-          <span>{lang.flag}</span>
-          <span>{lang.label}</span>
+          {lang.flag}
         </button>
       ))}
     </div>
