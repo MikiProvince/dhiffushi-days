@@ -31,7 +31,7 @@ const WhyBookSection = () => {
     <section className="py-20 md:py-28 bg-secondary/50">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
             {t("whyBook.title")}
           </h2>
           <p className="text-muted-foreground">

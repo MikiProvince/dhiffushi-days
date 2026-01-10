@@ -123,12 +123,12 @@ const translations: Record<Language, Record<string, string>> = {
     "whyBook.title": "Почему бронировать у нас",
     "whyBook.subtitle": "Мы верим в прозрачность, безопасность и искреннее общение.",
     "whyBook.reason1.title": "Фиксированные цены, без торга",
-    "whyBook.reason1.desc": "Платите ровно то, что видите. Без сюрпризов.",
+    "whyBook.reason1.desc": "Платите ровно столько, сколько указано. Без сюрпризов.",
     "whyBook.reason2.title": "Поддержка на английском, русском и итальянском",
     "whyBook.reason2.desc": "Общайтесь легко на своём языке.",
     "whyBook.reason3.title": "Проверенные местные капитаны",
     "whyBook.reason3.desc": "Работаем только с опытными, надёжными местными.",
-    "whyBook.reason4.title": "Без предоплаты и мошенничества",
+    "whyBook.reason4.title": "Без предоплаты и обмана",
     "whyBook.reason4.desc": "Платите только при встрече на острове.",
     "whyBook.reason5.title": "Мы всегда на связи",
     "whyBook.reason5.desc": "Поддержка до, во время и после поездки.",
@@ -141,7 +141,7 @@ const translations: Record<Language, Record<string, string>> = {
     "howItWorks.step2.title": "Напишите нам в WhatsApp",
     "howItWorks.step2.desc": "Мы подтвердим наличие и всё организуем.",
     "howItWorks.step3.title": "Наслаждайтесь океаном",
-    "howItWorks.step3.desc": "Приходите, расслабьтесь и создайте незабываемые воспоминания.",
+    "howItWorks.step3.desc": "Приходите, расслабьтесь и получите незабываемые впечатления.",
     
     // Reviews
     "reviews.title": "Отзывы гостей",
@@ -152,14 +152,14 @@ const translations: Record<Language, Record<string, string>> = {
     "review2.text": "Наконец кто-то говорит по-русски! Всё организовано идеально. Очень рекомендую.",
     "review2.name": "Анастасия",
     "review2.location": "Россия",
-    "review3.text": "Просто, честно, надёжно. Круиз с дельфинами — главное впечатление нашего отпуска.",
+    "review3.text": "Просто, честно, надёжно. Круиз с дельфинами стал главным впечатлением нашего отпуска.",
     "review3.name": "Марко",
     "review3.location": "Италия",
     
     // Contact
     "contact.location": "Остров Диффуши, Мальдивы",
     "contact.title": "Готовы к приключениям?",
-    "contact.subtitle": "Мы на острове. Вы всегда можете связаться с нами. Никаких сложных форм — просто напишите.",
+    "contact.subtitle": "Мы на острове. Вы всегда можете с нами связаться. Никаких сложных форм — просто напишите.",
     "contact.button": "Начать разговор",
     
     // Footer

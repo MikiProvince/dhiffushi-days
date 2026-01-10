@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
-            <p className="font-serif text-lg font-semibold text-foreground">
+            <p className="font-display text-lg font-semibold text-foreground">
               {t("footer.brand")}
             </p>
             <p className="text-sm text-muted-foreground">

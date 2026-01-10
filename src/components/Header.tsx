@@ -34,7 +34,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <a 
             href="/" 
-            className={`font-serif text-xl font-semibold transition-colors ${
+            className={`font-display text-xl font-semibold transition-colors ${
               isScrolled ? "text-foreground" : "text-white drop-shadow-md"
             }`}
           >

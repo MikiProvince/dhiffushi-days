@@ -77,7 +77,7 @@ const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
       </div>
       
       <div className="p-6">
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+        <h3 className="font-display text-xl font-semibold text-foreground mb-2">
           {name}
         </h3>
         
@@ -117,7 +117,7 @@ const ExcursionsSection = () => {
     <section id="excursions" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-14">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
             {t("excursions.title")}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">

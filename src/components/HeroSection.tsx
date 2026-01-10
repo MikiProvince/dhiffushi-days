@@ -26,7 +26,7 @@ const HeroSection = () => {
             {t("hero.location")}
           </p>
           
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight text-balance drop-shadow-lg">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight text-balance drop-shadow-lg">
             {t("hero.title")}
           </h1>
           

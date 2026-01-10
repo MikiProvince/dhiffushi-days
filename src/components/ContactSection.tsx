@@ -15,7 +15,7 @@ const ContactSection = () => {
             <span className="text-sm font-medium tracking-wide">{t("contact.location")}</span>
           </div>
           
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
             {t("contact.title")}
           </h2>
           
