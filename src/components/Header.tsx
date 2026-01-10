@@ -31,11 +31,6 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6">
-        {/* Language Switcher - Top Bar */}
-        <div className="flex justify-end mb-2">
-          <LanguageSwitcher />
-        </div>
-        
         <div className="flex items-center justify-between">
           <a 
             href="/" 
@@ -77,20 +72,26 @@ const Header = () => {
                 {t("nav.contact")}
               </a>
             </Button>
+            
+            {/* Language Switcher - Desktop */}
+            <LanguageSwitcher />
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
-            ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
-            )}
-          </button>
+          {/* Mobile: Language Switcher + Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            <LanguageSwitcher />
+            <button
+              className="p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              ) : (
+                <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
