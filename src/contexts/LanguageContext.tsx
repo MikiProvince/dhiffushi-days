@@ -36,6 +36,8 @@ const translations: Record<Language, Record<string, string>> = {
     "excursion.fishing.desc": "Traditional line fishing with local captains. Keep what you catch.",
     "excursion.island.name": "Island Hopping",
     "excursion.island.desc": "Visit neighboring local islands and experience authentic Maldivian life.",
+    "excursion.jetski.name": "Jet Ski Tour",
+    "excursion.jetski.desc": "Adrenaline-filled ride across crystal-clear waters. Experience speed and freedom on a jet ski.",
     
     // Why Book
     "whyBook.title": "Why book with us",
@@ -86,6 +88,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.copyright": "Made with care on Dhiffushi Island.",
     
     // Durations
+    "duration.1-2hours": "1-2 hours",
     "duration.2-3hours": "2-3 hours",
     "duration.1.5-2hours": "1.5-2 hours",
     "duration.3-4hours": "3-4 hours",
@@ -118,6 +121,8 @@ const translations: Record<Language, Record<string, string>> = {
     "excursion.fishing.desc": "Традиционная рыбалка с местными капитанами. Улов — ваш.",
     "excursion.island.name": "Путешествие по островам",
     "excursion.island.desc": "Посетите соседние острова и познакомьтесь с мальдивской культурой.",
+    "excursion.jetski.name": "Прогулка на гидромотоциклах",
+    "excursion.jetski.desc": "Адреналиновая поездка по кристально чистой воде. Ощутите скорость и свободу.",
     
     // Why Book
     "whyBook.title": "Почему бронировать у нас",
@@ -168,6 +173,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.copyright": "Сделано с заботой на острове Диффуши.",
     
     // Durations
+    "duration.1-2hours": "1-2 часа",
     "duration.2-3hours": "2-3 часа",
     "duration.1.5-2hours": "1,5-2 часа",
     "duration.3-4hours": "3-4 часа",
@@ -200,6 +206,8 @@ const translations: Record<Language, Record<string, string>> = {
     "excursion.fishing.desc": "Pesca tradizionale con capitani locali. Tieni ciò che peschi.",
     "excursion.island.name": "Tour delle isole",
     "excursion.island.desc": "Visita le isole vicine e vivi l'autentica vita maldiviana.",
+    "excursion.jetski.name": "Tour in moto d'acqua",
+    "excursion.jetski.desc": "Corsa adrenalinica su acque cristalline. Sperimenta velocità e libertà su un jet ski.",
     
     // Why Book
     "whyBook.title": "Perché prenotare con noi",
@@ -250,6 +258,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.copyright": "Fatto con cura sull'isola di Dhiffushi.",
     
     // Durations
+    "duration.1-2hours": "1-2 ore",
     "duration.2-3hours": "2-3 ore",
     "duration.1.5-2hours": "1,5-2 ore",
     "duration.3-4hours": "3-4 ore",
