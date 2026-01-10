@@ -7,9 +7,7 @@ import dolphinsImg from "@/assets/dolphins-sunset.jpg";
 import sandbankImg from "@/assets/sandbank-picnic.jpg";
 import fishingImg from "@/assets/fishing-trip.jpg";
 import islandImg from "@/assets/island-hopping.jpg";
-// TODO: Заменить на настоящее изображение jet-ski.jpg когда оно будет доступно
-// Временно используется dolphinsImg
-const jetskiImg = dolphinsImg;
+import jetskiImg from "@/assets/jet-ski.jpg";
 
 interface Excursion {
   id: string;
@@ -66,7 +64,7 @@ const excursions: Excursion[] = [
     nameKey: "excursion.jetski.name",
     descKey: "excursion.jetski.desc",
     durationKey: "duration.1-2hours",
-    price: "$50",
+    price: "$115",
     image: jetskiImg,
   },
 ];
