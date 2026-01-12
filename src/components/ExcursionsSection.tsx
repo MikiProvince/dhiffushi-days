@@ -72,7 +72,7 @@ const excursions: Excursion[] = [
 const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
   const { t } = useLanguage();
   const name = t(excursion.nameKey);
-  const whatsappLink = `https://wa.me/9607654321?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(name)}%20excursion.`;
+  const whatsappLink = `https://wa.me/+79627080841?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(name)}%20excursion.`;
 
   return (
     <article className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1">
