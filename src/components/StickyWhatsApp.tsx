@@ -1,5 +1,5 @@
 const StickyWhatsApp = () => {
-  const whatsappLink = "https://wa.me/9607654321?text=Hi!%20I%27m%20interested%20in%20booking%20an%20excursion%20from%20Dhiffushi.";
+  const whatsappLink = "https://wa.me/+79627080841?text=Hi!%20I%27m%20interested%20in%20booking%20an%20excursion%20from%20Dhiffushi.";
 
   return (
     <a
