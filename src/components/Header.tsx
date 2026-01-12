@@ -65,7 +65,7 @@ const Header = () => {
             </button>
             <Button variant="ocean" size="sm" asChild>
               <a
-                href="https://wa.me/9607654321?text=Hi!"
+                href="https://wa.me/+79627080841?text=Hi!"
                 target="_blank"
                 rel="noopener noreferrer"
               >
