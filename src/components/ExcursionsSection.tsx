@@ -1,6 +1,9 @@
 import { Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { FocusCards, Card } from "@/components/ui/focus-cards";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 import turtleImg from "@/assets/turtle-snorkel.jpg";
 import dolphinsImg from "@/assets/dolphins-sunset.jpg";
@@ -69,37 +72,56 @@ const excursions: Excursion[] = [
   },
 ];
 
-const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
+const ExcursionFocusCard = ({
+  excursion,
+  index,
+  hovered,
+  setHovered,
+}: {
+  excursion: Excursion;
+  index: number;
+  hovered: number | null;
+  setHovered: React.Dispatch<React.SetStateAction<number | null>>;
+}) => {
   const { t } = useLanguage();
   const name = t(excursion.nameKey);
   const whatsappLink = `https://wa.me/+79627080841?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(name)}%20excursion.`;
 
   return (
-    <article className="group bg-card rounded-xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1">
-      <div className="aspect-[4/3] overflow-hidden">
-        <img
-          src={excursion.image}
-          alt={name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-      </div>
-      
-      <div className="p-6">
-        <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+    <div
+      onMouseEnter={() => setHovered(index)}
+      onMouseLeave={() => setHovered(null)}
+      className={cn(
+        "rounded-xl relative bg-muted overflow-hidden h-80 md:h-[420px] w-full transition-all duration-300 ease-out cursor-pointer group",
+        hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+      )}
+    >
+      <img
+        src={excursion.image}
+        alt={name}
+        className="object-cover absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div
+        className={cn(
+          "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-5 transition-opacity duration-300",
+          hovered === index ? "opacity-100" : "opacity-80"
+        )}
+      >
+        <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-2">
           {name}
         </h3>
         
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+        <p className="text-white/80 text-sm mb-3 line-clamp-2">
           {t(excursion.descKey)}
         </p>
 
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-5">
+        <div className="flex items-center gap-4 text-sm text-white/90 mb-4">
           <span className="flex items-center gap-1.5">
             <Clock className="w-4 h-4" />
             {t(excursion.durationKey)}
           </span>
-          <span className="flex items-center gap-1.5 font-medium text-foreground">
+          <span className="flex items-center gap-1.5 font-semibold text-white">
             <DollarSign className="w-4 h-4" />
             {excursion.price}
           </span>
@@ -115,12 +137,18 @@ const ExcursionCard = ({ excursion }: { excursion: Excursion }) => {
           </a>
         </Button>
       </div>
-    </article>
+    </div>
   );
 };
 
 const ExcursionsSection = () => {
   const { t } = useLanguage();
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const cards = excursions.map((exc) => ({
+    title: exc.nameKey,
+    src: exc.image,
+  }));
 
   return (
     <section id="excursions" className="py-20 md:py-28 bg-background">
@@ -135,8 +163,14 @@ const ExcursionsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {excursions.map((excursion) => (
-            <ExcursionCard key={excursion.id} excursion={excursion} />
+          {excursions.map((excursion, index) => (
+            <ExcursionFocusCard
+              key={excursion.id}
+              excursion={excursion}
+              index={index}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
           ))}
         </div>
       </div>
