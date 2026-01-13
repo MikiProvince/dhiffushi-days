@@ -269,10 +269,14 @@ const translations: Record<Language, Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>(() => {
+  const [language, setLanguage] = useState<Language>("en");
+
+  useEffect(() => {
     const saved = localStorage.getItem("language") as Language;
-    return saved && ["en", "ru", "it"].includes(saved) ? saved : "en";
-  });
+    if (saved && ["en", "ru", "it"].includes(saved)) {
+      setLanguage(saved);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("language", language);

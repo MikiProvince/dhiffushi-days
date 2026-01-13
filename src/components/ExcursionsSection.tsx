@@ -1,8 +1,7 @@
 import { Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 import turtleImg from "@/assets/turtle-snorkel.jpg";
@@ -86,90 +85,95 @@ const ExcursionCard = ({
   const { t } = useLanguage();
   const name = t(excursion.nameKey);
   const whatsappLink = `https://wa.me/+79627080841?text=Hi!%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(name)}%20excursion.`;
+  
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / 20;
+    const y = (e.clientY - top - height / 2) / 20;
+    cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale(1.02)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+    setHovered(null);
+  };
 
   return (
     <div
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
       className={cn(
         "transition-all duration-300 ease-out",
         hovered !== null && hovered !== index && "blur-sm scale-[0.98] opacity-60"
       )}
     >
-      <CardContainer containerClassName="w-full">
-        <CardBody className="relative h-80 md:h-[420px] w-full rounded-xl overflow-hidden bg-muted group">
-          {/* Background Image */}
-          <CardItem
-            translateZ={0}
-            className="absolute inset-0 w-full h-full"
+      <div
+        ref={cardRef}
+        onMouseEnter={() => setHovered(index)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="relative h-80 md:h-[420px] w-full rounded-xl overflow-hidden bg-muted group transition-transform duration-200 ease-out cursor-pointer"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Background Image */}
+        <img
+          src={excursion.image}
+          alt={name}
+          className="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col justify-end p-5">
+          <h3 
+            className="text-xl md:text-2xl font-display font-semibold text-white mb-2 transition-transform duration-200"
+            style={{ transform: hovered === index ? 'translateZ(40px)' : 'translateZ(0)' }}
           >
-            <img
-              src={excursion.image}
-              alt={name}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </CardItem>
+            {name}
+          </h3>
+          
+          <p 
+            className="text-white/80 text-sm mb-3 line-clamp-2 transition-transform duration-200"
+            style={{ transform: hovered === index ? 'translateZ(30px)' : 'translateZ(0)' }}
+          >
+            {t(excursion.descKey)}
+          </p>
 
-          {/* Gradient Overlay */}
-          <CardItem
-            translateZ={30}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
-          />
-
-          {/* Content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-5">
-            <CardItem
-              translateZ={50}
-              className="w-full"
-            >
-              <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-2">
-                {name}
-              </h3>
-            </CardItem>
-            
-            <CardItem
-              translateZ={40}
-              className="w-full"
-            >
-              <p className="text-white/80 text-sm mb-3 line-clamp-2">
-                {t(excursion.descKey)}
-              </p>
-            </CardItem>
-
-            <CardItem
-              translateZ={45}
-              className="w-full"
-            >
-              <div className="flex items-center gap-4 text-sm text-white/90 mb-4">
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  {t(excursion.durationKey)}
-                </span>
-                <span className="flex items-center gap-1.5 font-semibold text-white">
-                  <DollarSign className="w-4 h-4" />
-                  {excursion.price}
-                </span>
-              </div>
-            </CardItem>
-
-            <CardItem
-              translateZ={60}
-              className="w-full"
-            >
-              <Button 
-                variant="whatsapp" 
-                className="w-full"
-                asChild
-              >
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  {t("excursions.book")}
-                </a>
-              </Button>
-            </CardItem>
+          <div 
+            className="flex items-center gap-4 text-sm text-white/90 mb-4 transition-transform duration-200"
+            style={{ transform: hovered === index ? 'translateZ(35px)' : 'translateZ(0)' }}
+          >
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4" />
+              {t(excursion.durationKey)}
+            </span>
+            <span className="flex items-center gap-1.5 font-semibold text-white">
+              <DollarSign className="w-4 h-4" />
+              {excursion.price}
+            </span>
           </div>
-        </CardBody>
-      </CardContainer>
+
+          <div
+            className="transition-transform duration-200"
+            style={{ transform: hovered === index ? 'translateZ(50px)' : 'translateZ(0)' }}
+          >
+            <Button 
+              variant="whatsapp" 
+              className="w-full"
+              asChild
+            >
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                {t("excursions.book")}
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
