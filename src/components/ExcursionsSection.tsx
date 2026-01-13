@@ -1,7 +1,7 @@
 import { Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { FocusCards, Card } from "@/components/ui/focus-cards";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -72,7 +72,7 @@ const excursions: Excursion[] = [
   },
 ];
 
-const ExcursionFocusCard = ({
+const ExcursionCard = ({
   excursion,
   index,
   hovered,
@@ -92,51 +92,84 @@ const ExcursionFocusCard = ({
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "rounded-xl relative bg-muted overflow-hidden h-80 md:h-[420px] w-full transition-all duration-300 ease-out cursor-pointer group",
-        hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+        "transition-all duration-300 ease-out",
+        hovered !== null && hovered !== index && "blur-sm scale-[0.98] opacity-60"
       )}
     >
-      <img
-        src={excursion.image}
-        alt={name}
-        className="object-cover absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
-      />
-      <div
-        className={cn(
-          "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-5 transition-opacity duration-300",
-          hovered === index ? "opacity-100" : "opacity-80"
-        )}
-      >
-        <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-2">
-          {name}
-        </h3>
-        
-        <p className="text-white/80 text-sm mb-3 line-clamp-2">
-          {t(excursion.descKey)}
-        </p>
+      <CardContainer containerClassName="w-full">
+        <CardBody className="relative h-80 md:h-[420px] w-full rounded-xl overflow-hidden bg-muted group">
+          {/* Background Image */}
+          <CardItem
+            translateZ={0}
+            className="absolute inset-0 w-full h-full"
+          >
+            <img
+              src={excursion.image}
+              alt={name}
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </CardItem>
 
-        <div className="flex items-center gap-4 text-sm text-white/90 mb-4">
-          <span className="flex items-center gap-1.5">
-            <Clock className="w-4 h-4" />
-            {t(excursion.durationKey)}
-          </span>
-          <span className="flex items-center gap-1.5 font-semibold text-white">
-            <DollarSign className="w-4 h-4" />
-            {excursion.price}
-          </span>
-        </div>
+          {/* Gradient Overlay */}
+          <CardItem
+            translateZ={30}
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+          />
 
-        <Button 
-          variant="whatsapp" 
-          className="w-full"
-          asChild
-        >
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            {t("excursions.book")}
-          </a>
-        </Button>
-      </div>
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col justify-end p-5">
+            <CardItem
+              translateZ={50}
+              className="w-full"
+            >
+              <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-2">
+                {name}
+              </h3>
+            </CardItem>
+            
+            <CardItem
+              translateZ={40}
+              className="w-full"
+            >
+              <p className="text-white/80 text-sm mb-3 line-clamp-2">
+                {t(excursion.descKey)}
+              </p>
+            </CardItem>
+
+            <CardItem
+              translateZ={45}
+              className="w-full"
+            >
+              <div className="flex items-center gap-4 text-sm text-white/90 mb-4">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4" />
+                  {t(excursion.durationKey)}
+                </span>
+                <span className="flex items-center gap-1.5 font-semibold text-white">
+                  <DollarSign className="w-4 h-4" />
+                  {excursion.price}
+                </span>
+              </div>
+            </CardItem>
+
+            <CardItem
+              translateZ={60}
+              className="w-full"
+            >
+              <Button 
+                variant="whatsapp" 
+                className="w-full"
+                asChild
+              >
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                  {t("excursions.book")}
+                </a>
+              </Button>
+            </CardItem>
+          </div>
+        </CardBody>
+      </CardContainer>
     </div>
   );
 };
@@ -144,11 +177,6 @@ const ExcursionFocusCard = ({
 const ExcursionsSection = () => {
   const { t } = useLanguage();
   const [hovered, setHovered] = useState<number | null>(null);
-
-  const cards = excursions.map((exc) => ({
-    title: exc.nameKey,
-    src: exc.image,
-  }));
 
   return (
     <section id="excursions" className="py-20 md:py-28 bg-background">
@@ -164,7 +192,7 @@ const ExcursionsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {excursions.map((excursion, index) => (
-            <ExcursionFocusCard
+            <ExcursionCard
               key={excursion.id}
               excursion={excursion}
               index={index}
